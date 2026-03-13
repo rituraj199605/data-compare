@@ -104,7 +104,7 @@ src/
 | `NEXTAUTH_URL` | App URL (e.g., `http://localhost:3000`) |
 | `NEXTAUTH_SECRET` | JWT secret — generate with `openssl rand -base64 32` |
 | `ADMIN_EMAIL` | Admin login email |
-| `ADMIN_PASSWORD_HASH` | bcrypt hash — generate with `node setup.js <password>` |
+| `ADMIN_PASSWORD_HASH` | scrypt hash — generate with `node setup.js <password>` |
 
 ## Build & Deploy
 

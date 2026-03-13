@@ -5,7 +5,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/ui/card";
@@ -22,9 +22,11 @@ export default function LoginPage(): JSX.Element {
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  if (status === "authenticated" && session !== null) {
-    router.push("/dashboard");
-  }
+  useEffect(() => {
+    if (status === "authenticated" && session !== null) {
+      router.push("/dashboard");
+    }
+  }, [status, session, router]);
 
   async function handleLogin(): Promise<void> {
     setLoading(true);
@@ -39,11 +41,12 @@ export default function LoginPage(): JSX.Element {
       setError("An unexpected error occurred.");
       return;
     }
-    if (result.error !== null && result.error !== undefined) {
+    if (result.ok !== true) {
       setError("Invalid email or password.");
       return;
     }
     router.push("/dashboard");
+    router.refresh();
   }
 
   return (
