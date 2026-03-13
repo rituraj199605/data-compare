@@ -1,0 +1,8 @@
+{
+  "extends": ["next/core-web-vitals"],
+  "rules": {
+    "max-lines-per-function": ["error", { "max": 60, "skipBlankLines": true, "skipComments": true }],
+    "no-warning-comments": "off",
+    "@typescript-eslint/no-unused-vars": "error"
+  }
+}
